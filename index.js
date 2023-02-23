@@ -2,6 +2,7 @@ const express = require("express");
 const bodyParse = require("body-parser");
 const multer = require("multer");
 const path = require("path");
+const cors = require("cors");
 
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
@@ -25,6 +26,17 @@ const PORT = process.env.PORT || 3977;
 
 app.use(bodyParse.urlencoded({ extended: true }));
 app.use(bodyParse.json());
+
+// Permitir cualquier origen
+app.use(cors() ,(req,res,next) => {
+  
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.setHeader('Content-Type', 'application/json');
+    next();
+    
+  });
 
 app.get("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
