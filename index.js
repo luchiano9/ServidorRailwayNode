@@ -50,8 +50,8 @@ app.get("/", (req, res) => {
 });
 
 app.post("/welcome", (req, res) => {
-    const { username } = req.body;
-    res.status(200).send({ message: `hola ${username}` });
+    // const { username } = req.body;
+    // res.status(200).send({ message: `hola ${username}` });
 });
 
 app.post("/api/lucho", async (req, res) => {
