@@ -13,15 +13,6 @@ app.use(express.json());
 //     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 //     next();
 //     });
-// app.use(cors() ,(req,res,next) => {
-    
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-//     res.setHeader('Content-Type', 'application/json');
-//     next();
-    
-// });
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './uploads'); // ubicación donde se guardarán los archivos
@@ -39,13 +30,20 @@ const upload = multer({
     }
 });
 
+app.use(cors() ,(req,res,next) => {
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.setHeader('Content-Type', 'application/json');
+    next();
+    
+});
 const PORT = process.env.PORT || 3977;
 
 app.use(express.json());
 
 // Permitir cualquier origen
-app.use(upload.single('file')); // Multer debe estar antes que el middleware de CORS
-app.use(cors());
 
 app.get("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
@@ -56,7 +54,7 @@ app.post("/welcome", (req, res) => {
     res.status(200).send({ message: `hola ${username}` });
 });
 
-app.post("/api/lucho", async (req, res) => {
+app.post("/api/lucho", upload.single('file'), async (req, res) => {
 
     const file = req.file;
     if (!file) {
