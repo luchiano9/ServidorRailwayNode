@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 app.use(cors({
-    origin: 'https://tu-sitio-web.com',
+    origin: '*',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type'],
     exposedHeaders: ['Content-Disposition'],
