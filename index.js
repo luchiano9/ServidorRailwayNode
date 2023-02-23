@@ -44,6 +44,7 @@ const PORT = process.env.PORT || 3977;
 app.use(express.json());
 
 // Permitir cualquier origen
+app.use(cors());
 
 app.get("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
@@ -66,7 +67,6 @@ app.post("/api/lucho", upload.single('file'), async (req, res) => {
     console.log("entro");
 });
 
-app.use(cors());
 
 app.get('/download', function (req, res) {
     const filePath = path.join(__dirname, './uploads/redpack.xlsx');
