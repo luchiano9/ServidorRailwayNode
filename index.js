@@ -45,7 +45,7 @@ const PORT = process.env.PORT || 3977;
 
 // Permitir cualquier origen
 
-app.get("/", (req, res) => {
+app.post("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
 });
 
