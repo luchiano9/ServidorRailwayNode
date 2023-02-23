@@ -5,12 +5,13 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
+app.use(cors());
 // app.options('*', cors()) // include before other routes
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match 
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-    });
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*"); // update to match 
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+//     });
 // app.use(cors() ,(req,res,next) => {
     
 //     res.setHeader('Access-Control-Allow-Origin', '*');
