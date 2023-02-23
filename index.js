@@ -63,7 +63,7 @@ app.post("/api/lucho", upload.single('file'), async (req, res) => {
         error.status = 400;
         return next(error);
     }
-    res.send(file);
+    res.status(200).send(file);
     console.log("entro");
 });
 
