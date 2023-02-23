@@ -44,6 +44,14 @@ const PORT = process.env.PORT || 3977;
 // app.use(express.json());
 
 // Permitir cualquier origen
+app.get("/", upload.single('file'), (req, res) => {
+    // const file = req.file;
+    // Envía el archivo como respuesta
+    // const filePath = path.join(__dirname, "uploads", file.filename);
+    res.send({ message: `lo que paso es ${__dirname}`});
+
+    // res.status(200).send(file);
+});
 
 app.post("/", upload.single('file'), (req, res) => {
     const file = req.file;
