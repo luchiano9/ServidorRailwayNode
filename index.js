@@ -48,7 +48,7 @@ const PORT = process.env.PORT || 3977;
 app.post("/",upload.single('file'), (req, res) => {
     const file = req.file;
 
-    res.status(200).send({ message: "Hola" });
+    res.status(200).send(file);
 });
 
 app.post("/welcome",(req, res) => {
