@@ -46,6 +46,8 @@ const PORT = process.env.PORT || 3977;
 // Permitir cualquier origen
 
 app.post("/",upload.single('file'), (req, res) => {
+    const file = req.file;
+
     res.status(200).send({ message: "Hola" });
 });
 
