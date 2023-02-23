@@ -22,12 +22,6 @@ const upload = multer({
 });
 
 const app = express();
-const PORT = process.env.PORT || 3977;
-
-app.use(bodyParse.urlencoded({ extended: true }));
-app.use(bodyParse.json());
-
-// Permitir cualquier origen
 app.use(cors() ,(req,res,next) => {
   
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -37,6 +31,12 @@ app.use(cors() ,(req,res,next) => {
     next();
     
   });
+const PORT = process.env.PORT || 3977;
+
+app.use(bodyParse.urlencoded({ extended: true }));
+app.use(bodyParse.json());
+
+// Permitir cualquier origen
 
 app.get("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
