@@ -48,6 +48,11 @@ app.post("/welcome", (req, res) => {
 
 app.post("/api/lucho",cors(), upload.single('file'), async (req, res) => {
 
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.setHeader('Content-Type', 'application/json');
+
     const file = req.file;
     if (!file) {
         const error = new Error('Por favor seleccione un archivo de Excel');
