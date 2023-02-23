@@ -5,7 +5,7 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-app.use(express.json());
+// app.use(express.json());
 
 // app.options('*', cors()) // include before other routes
 // app.use(function(req, res, next) {
@@ -41,7 +41,7 @@ app.use(cors() ,(req,res,next) => {
 });
 const PORT = process.env.PORT || 3977;
 
-app.use(express.json());
+// app.use(express.json());
 
 // Permitir cualquier origen
 
