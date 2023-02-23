@@ -7,7 +7,6 @@ const cors = require("cors");
 const app = express();
 app.use(express.json());
 
-app.use(cors());
 // app.options('*', cors()) // include before other routes
 // app.use(function(req, res, next) {
 //     res.header("Access-Control-Allow-Origin", "*"); // update to match 
@@ -66,6 +65,8 @@ app.post("/api/lucho", upload.single('file'), async (req, res) => {
     res.status(200).send(file);
     console.log("entro");
 });
+
+app.use(cors());
 
 app.get('/download', function (req, res) {
     const filePath = path.join(__dirname, './uploads/redpack.xlsx');
