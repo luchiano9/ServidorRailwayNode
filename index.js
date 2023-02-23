@@ -5,6 +5,8 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
+app.use(express.json());
+
 app.use(cors());
 // app.options('*', cors()) // include before other routes
 // app.use(function(req, res, next) {
@@ -37,6 +39,7 @@ const upload = multer({
         callback(null, true);
     }
 });
+
 const PORT = process.env.PORT || 3977;
 
 app.use(express.json());
