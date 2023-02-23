@@ -4,6 +4,16 @@ const multer = require("multer");
 const path = require("path");
 const cors = require("cors");
 
+const app = express();
+app.use(cors() ,(req,res,next) => {
+    
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+    res.setHeader('Content-Type', 'application/json');
+    next();
+    
+});
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './uploads'); // ubicación donde se guardarán los archivos
@@ -20,21 +30,9 @@ const upload = multer({
         callback(null, true);
     }
 });
-
-const app = express();
-app.use(cors() ,(req,res,next) => {
-  
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.setHeader('Content-Type', 'application/json');
-    next();
-    
-  });
 const PORT = process.env.PORT || 3977;
 
-app.use(bodyParse.urlencoded({ extended: true }));
-app.use(bodyParse.json());
+app.use(express.json());
 
 // Permitir cualquier origen
 
