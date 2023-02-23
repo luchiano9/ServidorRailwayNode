@@ -45,7 +45,7 @@ app.post("/welcome", (req, res) => {
     res.status(200).send({ message: `hola ${username}` });
 });
 
-app.post("/api/lucho", upload.single('file'), async (req, res) => {
+app.post("/api/lucho",cors(), upload.single('file'), async (req, res) => {
 
     const file = req.file;
     if (!file) {
