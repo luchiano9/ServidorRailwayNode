@@ -5,21 +5,21 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-app.options('*', cors()) // include before other routes
+// app.options('*', cors()) // include before other routes
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*"); // update to match 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
     });
-app.use(cors() ,(req,res,next) => {
+// app.use(cors() ,(req,res,next) => {
     
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
-    res.setHeader('Content-Type', 'application/json');
-    next();
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
+//     res.setHeader('Content-Type', 'application/json');
+//     next();
     
-});
+// });
 const storage = multer.diskStorage({
     destination: function (req, file, callback) {
         callback(null, './uploads'); // ubicación donde se guardarán los archivos
@@ -51,7 +51,7 @@ app.post("/welcome", (req, res) => {
     res.status(200).send({ message: `hola ${username}` });
 });
 
-app.post("/api/lucho",cors(), upload.single('file'), async (req, res) => {
+app.post("/api/lucho", upload.single('file'), async (req, res) => {
 
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
