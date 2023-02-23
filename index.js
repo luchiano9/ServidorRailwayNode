@@ -49,7 +49,7 @@ app.post("/", upload.single('file'), (req, res) => {
     const file = req.file;
     // Envía el archivo como respuesta
     const filePath = path.join(__dirname, "uploads", file.filename);
-    res.sendFile(filePath);
+    res.send({ message: `lo que paso es ${filePath}`});
 
     // res.status(200).send(file);
 });
