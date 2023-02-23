@@ -49,9 +49,9 @@ app.get("/", (req, res) => {
     res.status(200).send({ message: "Hola" });
 });
 
-app.post("/welcome", upload.single('file'),(req, res) => {
-    // const { username } = req.body;
-    // res.status(200).send({ message: `hola ${username}` });
+app.post("/welcome",(req, res) => {
+    const { username } = req.body;
+    res.status(200).send({ message: `hola ${username}` });
 });
 
 app.post("/api/lucho", async (req, res) => {
