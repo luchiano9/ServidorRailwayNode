@@ -45,10 +45,16 @@ const PORT = process.env.PORT || 3977;
 
 // Permitir cualquier origen
 app.get("/", upload.single('file'), (req, res) => {
+    const filePath = path.join(__dirname, './uploads/redpack.xlsx');
     // const file = req.file;
     // Envía el archivo como respuesta
     // const filePath = path.join(__dirname, "uploads", file.filename);
-    res.send({ message: `lo que paso es ${__dirname}`});
+    res.download(filePath, function (err) {
+        if (err) {
+            console.log(err);
+            res.status(500).send('Error al descargar el archivo');
+        }
+    });
 
     // res.status(200).send(file);
 });
