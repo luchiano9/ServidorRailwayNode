@@ -44,6 +44,7 @@ const PORT = process.env.PORT || 3977;
 app.use(express.json());
 
 // Permitir cualquier origen
+app.use(upload.single('file')); // Multer debe estar antes que el middleware de CORS
 app.use(cors());
 
 app.get("/", (req, res) => {
@@ -55,7 +56,7 @@ app.post("/welcome", (req, res) => {
     res.status(200).send({ message: `hola ${username}` });
 });
 
-app.post("/api/lucho", upload.single('file'), async (req, res) => {
+app.post("/api/lucho", async (req, res) => {
 
     const file = req.file;
     if (!file) {
