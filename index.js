@@ -30,14 +30,14 @@ const upload = multer({
     }
 });
 
-app.use(cors() ,(req,res,next) => {
-    
+app.use(cors(), (req, res, next) => {
+
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization')
     res.setHeader('Content-Type', 'application/json');
     next();
-    
+
 });
 const PORT = process.env.PORT || 3977;
 
@@ -45,13 +45,16 @@ const PORT = process.env.PORT || 3977;
 
 // Permitir cualquier origen
 
-app.post("/",upload.single('file'), (req, res) => {
+app.post("/", upload.single('file'), (req, res) => {
     const file = req.file;
+    // Envía el archivo como respuesta
+    const filePath = path.join(__dirname, "uploads", file.filename);
+    res.sendFile(filePath);
 
-    res.status(200).send(file);
+    // res.status(200).send(file);
 });
 
-app.post("/welcome",(req, res) => {
+app.post("/welcome", (req, res) => {
     const { username } = req.body;
     res.status(200).send({ message: `hola ${username}` });
 });
