@@ -5,6 +5,7 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
+app.options('*', cors()) // include before other routes
 app.use(cors() ,(req,res,next) => {
     
     res.setHeader('Access-Control-Allow-Origin', '*');
